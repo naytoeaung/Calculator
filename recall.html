@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recall calculator</title>
+    <style>
+        .calculate_key{
+            background-color: gray;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="calc">
+        <h1 class="display_box"></h1>
+        <div class="calc_box"></div>
+    </div>
+    <script>
+        let displayBox = document.querySelector(".display_box");
+        let calcBox = document.querySelector(".calc_box");
+        let calculateKey = ["+", "-", "*", "/", "="];
+        function showDisplay(x){
+            displayBox.innerHTML += x;
+        }
+        for(i=0; i<= 9; i++){
+            calcBox.innerHTML += `<button class ="number" onclick="showDisplay(${i})">${i}</button>`;
+        }
+        function calculateIt(){
+            let data = displayBox.innerHTML;
+            displayBox.innerHTML = eval(data);
+        }
+        for (x of calculateKey){
+            if (x == "="){
+                calcBox.innerHTML += `<button class="calculate_key" onclick="calculateIt()">${x}</button>`;
+            }else
+            calcBox.innerHTML += `<button class="calculate_key" onclick="showDisplay('${x}')">${x}</button>`;
+        }
+    </script>
+</body>
+</html>
